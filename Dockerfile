@@ -28,4 +28,4 @@ RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
 # Default command (overridden by docker-compose for local dev)
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD gunicorn config.wsgi:application --bind 0.0.0.0:$PORT

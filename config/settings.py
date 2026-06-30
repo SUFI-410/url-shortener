@@ -36,6 +36,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://url-shortener-production-044b.up.railway.app",
 ]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 # Application definition
 

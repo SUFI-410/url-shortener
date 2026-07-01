@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
+        input[type="url"] { width: 80%; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 12px 24px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 4px; }
+        .error { margin-top: 20px; padding: 15px; background: #ffebee; color: #c62828; border-radius: 4px; }
+        .success { margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 4px; }
+        a { word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>🔗 URL Shortener</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="url" name="original_url" placeholder="Enter your long URL here" required>
+        <br><br>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if short_url %}
+        <div class="success">
+            <p><strong>Your shortened URL:</strong></p>
+            <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+    {% endif %}
+</body>
+</html>

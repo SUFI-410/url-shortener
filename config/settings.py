@@ -43,6 +43,21 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
 
 
+# ===== ADD THESE LINES =====
+# Force secure cookies behind Railway's proxy
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+# Optional: Auto-redirect HTTP → HTTPS in production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+# ===========================
+
+
 # =============================================================================
 # APPLICATION DEFINITION
 # =============================================================================
